@@ -32,7 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 50,
-              child: Center(child: Text('${films[index]["title"]}')),
+              child:
+                  Card(child: Center(child: Text('${films[index]["title"]}'))),
             );
           }),
     );

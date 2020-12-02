@@ -9,11 +9,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Star war film'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // home: MyHomePage(title: 'Star war films'),
+        routes: _registerRoute());
+  }
+
+  //https://starwars-visualguide.com/assets/img/films/4.jpg
+  //https://starwars-visualguide.com/assets/img/characters/1.jpg
+  Map<String, WidgetBuilder> _registerRoute() {
+    return <String, WidgetBuilder>{
+      '/': (context) => MyHomePage(title: 'Star war films'),
+    };
   }
 }
