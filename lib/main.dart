@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 
   Route _registerRouteWithParameters(RouteSettings settings) {
     if (settings.name == AppRoutes.film_detail) {
-      final filmId = settings.arguments;
+      final filmId = settings.arguments; // get parameter
       return MaterialPageRoute(builder: (context) {
         return FilmDetailPage(
           filmId: filmId,

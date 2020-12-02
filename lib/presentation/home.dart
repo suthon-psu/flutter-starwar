@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pupademo/config/routes.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -30,10 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(8),
           itemCount: films.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 50,
-              child:
-                  Card(child: Center(child: Text('${films[index]["title"]}'))),
+            return InkWell(
+              onTap: () => Navigator.of(context).pushNamed(
+                  AppRoutes.film_detail,
+                  arguments: films[index]["id"]),
+              child: Container(
+                height: 50,
+                child: Card(
+                    child: Center(child: Text('${films[index]["title"]}'))),
+              ),
             );
           }),
     );
