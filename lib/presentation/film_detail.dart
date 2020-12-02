@@ -3,8 +3,8 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
 class FilmDetailPage extends StatefulWidget {
-  int filmId;
-  FilmDetailPage({Key key, this.filmId}) : super(key: key);
+  String filmUrl;
+  FilmDetailPage({Key key, this.filmUrl}) : super(key: key);
 
   @override
   _FilmDetailPageState createState() => _FilmDetailPageState();
@@ -16,27 +16,25 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
   @override
   void initState() {
     super.initState();
+    getFilm(widget.filmUrl);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TITLE"),
+        title: Text(film["title"] ?? "......"),
       ),
       body: Text("Film Detail"),
     );
   }
 
-  Future getFilm(id) async {
-    var url = 'https://swapi.dev/api/films';
-
+  Future getFilm(url) async {
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
-        this.film = jsonResponse["results"];
-        print(this.film);
+        this.film = jsonResponse;
       });
     } else {
       print('Request failed with status: ${response.statusCode}.');

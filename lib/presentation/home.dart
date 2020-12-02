@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return InkWell(
               onTap: () => Navigator.of(context).pushNamed(
                   AppRoutes.film_detail,
-                  arguments: films[index]["id"]),
+                  arguments: films[index]["url"]),
               child: Container(
                 height: 50,
                 child: Card(
