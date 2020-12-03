@@ -53,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
         this.films = jsonResponse["results"];
-        print(this.films);
       });
     } else {
       print('Request failed with status: ${response.statusCode}.');
