@@ -29,7 +29,6 @@ class _CharacterListItemsWidgetState extends State<CharacterListItemsWidget> {
             image: NetworkImage(
                 "https://starwars-visualguide.com/assets/img/characters/${character['id']}.jpg"),
             fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
           ),
         ),
         child: Text(
