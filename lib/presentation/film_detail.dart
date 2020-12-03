@@ -29,8 +29,15 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
         padding: const EdgeInsets.all(8),
         children: <Widget>[
           //https://starwars-visualguide.com/assets/img/films/4.jpg
-          Image.network(
-              "https://starwars-visualguide.com/assets/img/films/${film["id"]}.jpg"),
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                      "https://starwars-visualguide.com/assets/img/films/${film["id"]}.jpg"),
+                  fit: BoxFit.cover),
+            ),
+          ),
           Container(
             height: 50,
             color: Colors.amber[600],
