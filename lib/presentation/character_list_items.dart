@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
-class CharacterListItemsPage extends StatefulWidget {
+class CharacterListItemsWidget extends StatefulWidget {
   String characterUrl;
-  CharacterListItemsPage({Key key, this.characterUrl}) : super(key: key);
+  CharacterListItemsWidget({Key key, this.characterUrl}) : super(key: key);
 
   @override
-  _CharacterListItemsPageState createState() => _CharacterListItemsPageState();
+  _CharacterListItemsWidgetState createState() =>
+      _CharacterListItemsWidgetState();
 }
 
-class _CharacterListItemsPageState extends State<CharacterListItemsPage> {
+class _CharacterListItemsWidgetState extends State<CharacterListItemsWidget> {
   var character = {};
 
   @override
@@ -21,7 +22,21 @@ class _CharacterListItemsPageState extends State<CharacterListItemsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(character["name"] ?? " ");
+    return Card(
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://starwars-visualguide.com/assets/img/characters/${character['id']}.jpg"),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+          ),
+        ),
+        child: Text(
+          character['name'] ?? " ",
+        ),
+      ),
+    );
   }
 
   Future getCharacter(url) async {
@@ -30,9 +45,15 @@ class _CharacterListItemsPageState extends State<CharacterListItemsPage> {
       var jsonResponse = convert.jsonDecode(response.body);
       setState(() {
         this.character = jsonResponse;
+        this.character["id"] = getIdFromCharacterUrl(url);
       });
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+  }
+
+  String getIdFromCharacterUrl(url) {
+    final id = url.split("http://swapi.dev/api/people/")[1];
+    return id.split('/')[0];
   }
 }

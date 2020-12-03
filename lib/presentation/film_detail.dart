@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+import 'package:pupademo/presentation/character_list_items.dart';
 
 class FilmDetailPage extends StatefulWidget {
   String filmUrl;
@@ -49,12 +50,9 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
             height: 300,
             child: GridView.count(
               crossAxisCount: 2,
-              children: List.generate(film["characters"].length, (index) {
-                return Center(
-                  child: Text(
-                    '${film["characters"][index]}',
-                  ),
-                );
+              children: List.generate(film["characters"]?.length ?? 0, (index) {
+                return CharacterListItemsWidget(
+                    characterUrl: '${film["characters"][index]}');
               }),
             ),
           )
