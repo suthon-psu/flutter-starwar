@@ -45,6 +45,19 @@ class _FilmDetailPageState extends State<FilmDetailPage> {
             color: Colors.amber[600],
             child: Center(child: Text('Director : ${film['director']}')),
           ),
+          Container(
+            height: 300,
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: List.generate(film["characters"].length, (index) {
+                return Center(
+                  child: Text(
+                    '${film["characters"][index]}',
+                  ),
+                );
+              }),
+            ),
+          )
         ],
       ),
     );
