@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pupademo/config/routes.dart';
 import 'package:pupademo/presentation/film_detail.dart';
 import 'package:pupademo/presentation/home.dart';
+import 'package:pupademo/presentation/home2.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   //https://starwars-visualguide.com/assets/img/characters/1.jpg
   Map<String, WidgetBuilder> _registerRoute() {
     return <String, WidgetBuilder>{
-      AppRoutes.home: (context) => MyHomePage(title: 'Star war films'),
+      AppRoutes.home: (context) => MyHomePage2(title: 'Star war films'),
       AppRoutes.test: (context) => MyHomePage(title: 'TEST Screen'),
     };
   }
